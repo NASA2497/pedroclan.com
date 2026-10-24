@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pedro Clan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+:root{--ice:#c9f7ff;--cyan:#64f4ff;--blue:#6f8cff;--glass:rgba(7,18,43,.72);--line:rgba(144,235,255,.28)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:#effcff;font-family:'DM Sans',sans-serif;background:#061225;overflow-x:hidden}
+button,input,select{font:inherit}button{cursor:pointer}
+.sky{position:fixed;inset:0;z-index:-3;overflow:hidden;background:radial-gradient(ellipse at 50% 5%,#173c60 0%,#091a34 46%,#030914 100%)}
+.aurora{position:absolute;top:-23%;left:-15%;width:130%;height:70%;filter:blur(52px);opacity:.40;transform:rotate(-8deg);background:linear-gradient(110deg,transparent 10%,rgba(38,255,191,.03) 20%,rgba(41,255,199,.36) 34%,rgba(78,137,255,.38) 47%,rgba(185,85,255,.23) 57%,rgba(56,255,206,.18) 67%,transparent 83%);animation:aurora 14s ease-in-out infinite alternate}
+.aurora.two{top:-9%;left:15%;height:48%;opacity:.22;filter:blur(68px);transform:rotate(12deg);animation-duration:19s}
+@keyframes aurora{from{transform:translateX(-5%) rotate(-9deg) scaleY(.85)}to{transform:translateX(5%) rotate(8deg) scaleY(1.12)}}
+.stars{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 15% 20%,#fff 40%,transparent 60%),radial-gradient(1px 1px at 42% 12%,#fff 40%,transparent 60%),radial-gradient(2px 2px at 72% 28%,#d5ffff 40%,transparent 60%),radial-gradient(1px 1px at 88% 10%,#fff 40%,transparent 60%),radial-gradient(1px 1px at 63% 8%,#fff 40%,transparent 60%),radial-gradient(1px 1px at 25% 38%,#fff 40%,transparent 60%);background-size:380px 260px;opacity:.7}
+.mountain{position:absolute;bottom:0;left:0;width:100%;height:43%;background:#0a1b31;clip-path:polygon(0 53%,9% 30%,16% 49%,28% 5%,37% 45%,48% 16%,58% 53%,69% 10%,79% 44%,89% 22%,100% 48%,100% 100%,0 100%)}
+.mountain.back{height:35%;opacity:.8;background:#132d49;clip-path:polygon(0 35%,11% 55%,23% 19%,34% 49%,45% 10%,58% 52%,70% 23%,83% 50%,94% 26%,100% 39%,100% 100%,0 100%)}
+.snowline{position:absolute;bottom:23%;left:0;width:100%;height:22%;opacity:.86;background:#d6f5ff;clip-path:polygon(0 83%,9% 55%,16% 74%,28% 0,37% 65%,48% 19%,58% 75%,69% 0,79% 63%,89% 31%,100% 67%,100% 74%,89% 43%,79% 72%,69% 10%,58% 84%,48% 30%,37% 75%,28% 12%,16% 83%,9% 65%,0 90%)}
+.snowfall{position:absolute;inset:-120% 0 0;pointer-events:none;background-repeat:repeat;will-change:transform}
+.snow-a{z-index:3;opacity:.68;background-image:radial-gradient(2px 2px at 20px 30px,#f5fbff 96%,transparent),radial-gradient(1.5px 1.5px at 100px 80px,#e7f7ff 96%,transparent),radial-gradient(2px 2px at 170px 140px,#fff 96%,transparent);background-size:210px 190px;animation:snowfall 17s linear infinite}
+.snow-b{z-index:3;opacity:.45;background-image:radial-gradient(2.5px 2.5px at 40px 50px,#fff 96%,transparent),radial-gradient(1.5px 1.5px at 130px 110px,#d9f2ff 96%,transparent),radial-gradient(2px 2px at 190px 170px,#fff 96%,transparent);background-size:260px 230px;animation:snowfall 25s linear infinite;animation-delay:-8s}
+.snow-c{z-index:3;opacity:.3;background-image:radial-gradient(1px 1px at 70px 40px,#fff 96%,transparent),radial-gradient(1px 1px at 150px 150px,#fff 96%,transparent);background-size:180px 200px;animation:snowfall 31s linear infinite;animation-delay:-13s}
+@keyframes snowfall{from{transform:translateY(-10%)}to{transform:translateY(110%)}}
+.forest{position:absolute;bottom:0;width:100%;height:26%;background:#020b16;clip-path:polygon(0 40%,3% 40%,4% 12%,5% 40%,8% 40%,9% 0,11% 40%,14% 40%,15% 18%,17% 40%,21% 40%,22% 4%,24% 40%,27% 40%,29% 10%,31% 40%,35% 40%,37% 0,39% 40%,43% 40%,45% 15%,47% 40%,51% 40%,53% 4%,55% 40%,59% 40%,61% 10%,63% 40%,68% 40%,70% 0,72% 40%,76% 40%,78% 15%,80% 40%,84% 40%,86% 0,88% 40%,92% 40%,94% 10%,96% 40%,100% 40%,100% 100%,0 100%)}
+.forest:before{content:"";position:absolute;inset:0;z-index:1;opacity:.95;
+background:
+radial-gradient(ellipse 12px 3px at 4.5% 39%,#dceaf0 0 70%,transparent 74%),
+radial-gradient(ellipse 13px 3px at 9.8% 39%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 12px 3px at 15.8% 17%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 13px 3px at 22.9% 3%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 12px 3px at 29.8% 9%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 13px 3px at 37.9% 0%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 12px 3px at 45.9% 14%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 13px 3px at 53.9% 3%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 12px 3px at 61.9% 9%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 13px 3px at 70.9% 0%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 12px 3px at 78.9% 14%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 13px 3px at 86.9% 0%,#e6f1f5 0 70%,transparent 74%),
+radial-gradient(ellipse 12px 3px at 94.9% 9%,#e6f1f5 0 70%,transparent 74%)}
+.forest:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,#020711 75%)}
+main{width:min(1120px,92%);margin:auto;padding-bottom:70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 0}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:55px;height:55px;border:0;border-radius:0;display:grid;place-items:center;color:#b8f4ee;font-family:'Space Grotesk',sans-serif;font-size:43px;font-weight:700;position:relative;box-shadow:none;background:none;overflow:visible}
+.logo:before{content:none}
+.logo span{display:block;transform:rotate(90deg);line-height:1}
+.brand-name{font-family:'DM Sans',sans-serif;letter-spacing:1.8px;font-size:clamp(15px,2.5vw,23px);font-weight:700;text-shadow:0 1px 3px #0005}.brand-name small{display:block;font:600 11px Rajdhani,sans-serif;letter-spacing:1px;color:#9ddce8;margin-top:4px}
+select,.small-btn{color:#eaffff;background:#07182be0;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.hero{text-align:center;padding:52px 10px 36px}.eyebrow{color:var(--cyan);letter-spacing:5px;font-weight:700;text-transform:uppercase;font-size:13px}
+h1{font-family:'DM Sans',sans-serif;font-size:clamp(38px,7vw,68px);line-height:1.02;letter-spacing:.5px;font-weight:700;margin:15px 0;color:#f0f7fa;text-shadow:0 3px 18px #0008}
+.hero p{font-size:20px;color:#c2dfe9;max-width:600px;margin:0 auto 25px}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{border:1px solid #75f4ff88;border-radius:12px;padding:12px 20px;color:#f2ffff;background:linear-gradient(135deg,#164b5b,#243d62);font-weight:700;letter-spacing:.7px;box-shadow:0 3px 12px #0002;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn:hover,.member:hover{transform:translateY(-3px);box-shadow:0 0 25px #55edff55;border-color:var(--cyan)}.btn.secondary{background:#071629b8}
+.panel{background:rgba(7,18,32,.86);border:1px solid rgba(164,201,218,.22);border-radius:14px;padding:24px;box-shadow:0 8px 28px #0002;backdrop-filter:blur(5px);margin:22px 0}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:20px;letter-spacing:1px;margin:0 0 8px}.sub{color:#a8c8d7;margin:0 0 20px;font-size:17px}
+.members{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.member{min-height:82px;border-radius:13px;border:1px solid #6bdfff77;background:rgba(12,30,48,.94);color:#effcff;box-shadow:0 3px 12px #0002;transition:.2s;text-align:left;padding:13px 15px}
+.member strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:1px}.member span{display:block;color:#7fefff;font-size:14px;margin-top:6px}
+.profile{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;margin-top:20px;padding:18px;border-radius:16px;background:#061425b8;border:1px solid #6cefff40}
+.avatar{display:grid;place-items:center;min-height:155px;background:radial-gradient(circle,#1d4562,#071426 72%);border-radius:13px}
+.avatar svg{width:120px;height:145px;filter:drop-shadow(0 0 8px #64f4ff33)}.profile h3{font-family:'Space Grotesk',sans-serif;margin:0 0 7px}.role{color:var(--cyan);font-weight:700}.private{color:#bed4df;font-size:17px;margin-top:9px}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.game{padding:18px;background:#061528b8;border:1px solid #6bdfff3a;border-radius:15px;min-height:190px}.game h3{font-family:'Space Grotesk',sans-serif;font-size:15px;letter-spacing:1px;margin:0 0 8px}.game p{color:#b6d2df;margin:0 0 12px;font-size:16px}.game-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.game input{width:95px;background:#08182b;color:#fff;border:1px solid #5bcfe6;border-radius:9px;padding:9px}.game-output{color:var(--cyan);font-weight:700;min-height:24px;margin-top:10px}
+.links{display:flex;gap:12px;flex-wrap:wrap}.links .btn{flex:1;min-width:180px}
+footer{text-align:center;color:#86aebd;padding:22px 0 0;font-size:15px;letter-spacing:1px}
+#gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:linear-gradient(180deg,rgba(2,8,20,.65),rgba(2,8,20,.9))}
+.gate-card{width:min(440px,100%);text-align:center;padding:34px 28px;border-radius:22px;border:1px solid #6cefff7a;background:rgba(4,17,35,.92);box-shadow:0 0 60px #26dfff20;backdrop-filter:blur(18px)}
+.gate-logo{margin:0 auto 18px}.gate-card h2{font-family:'Space Grotesk',sans-serif;letter-spacing:1px}.gate-card p{color:#b9d7e5;font-size:18px}.gate-card input{width:100%;padding:14px 15px;border:1px solid #63d9ed77;border-radius:11px;background:#061426;color:white;outline:none;margin:7px 0 12px;font-size:18px;text-align:center;letter-spacing:3px}.gate-card input:focus{border-color:var(--cyan);box-shadow:0 0 15px #59edff24}.gate-card .btn{width:100%}.error{color:#ff9eaf;min-height:24px;margin-top:9px}.hidden{display:none!important}
+@media(max-width:700px){header{align-items:flex-start;flex-wrap:wrap}.members{grid-template-columns:repeat(2,minmax(0,1fr))}.games{grid-template-columns:1fr}.profile{grid-template-columns:1fr}.avatar{min-height:130px}.hero{padding-top:35px}.panel{padding:18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* Small finishing touches to keep the site cosy rather than overly polished. */
+.logo{border:0;border-radius:0;box-shadow:none;background:transparent}
+.logo span{display:block;font-family:'Space Grotesk',sans-serif;font-size:43px;font-weight:700;line-height:1;transform:rotate(90deg)}
+.brand-name{letter-spacing:1.2px}
+.brand-name small{letter-spacing:1.4px;font-weight:500}
+.panel{border-color:rgba(144,235,255,.19);box-shadow:0 12px 35px rgba(0,0,0,.16)}
+.btn,.member,.game-card{transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.btn:hover,.member:hover{transform:translateY(-2px)}
+h1,h2,h3{letter-spacing:-.025em}
+::selection{background:#7debdc;color:#071526}
+
+.knight-scene{max-width:760px;margin:24px auto 10px;padding:10px 18px 0;text-align:center}
+.knight-art{display:block;width:min(100%,397px);height:auto;max-height:420px;object-fit:contain;margin:0 auto;border:0;border-radius:0;background:transparent;box-shadow:none}
+footer{padding:24px 12px 30px;text-align:center;color:#c3d5d7;font-size:.85rem;letter-spacing:.02em}
+
+
+.accessory-controls{margin:18px auto 0;max-width:560px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:14px;border:1px solid rgba(144,235,255,.18);border-radius:12px;background:rgba(7,18,30,.42)}
+.accessory-controls[hidden]{display:none}
+.accessory-controls label{font-size:.9rem;color:#d9e8e8}
+.accessory-controls select{background:#122536;color:#edf7f6;border:1px solid #6e9ca4;border-radius:8px;padding:9px 12px;font:inherit}
+#accessoryStatus{font-size:.8rem;color:#9fc2c5}
+.best-score{font-size:.82rem;opacity:.8}
+.sequence-pad{display:grid;grid-template-columns:repeat(3,minmax(44px,62px));gap:7px;justify-content:center;margin-top:12px}
+.sequence-pad button:first-child{grid-column:2}
+.sequence-pad button:nth-child(2){grid-column:1;grid-row:2}
+.sequence-pad button:nth-child(3){grid-column:2;grid-row:2}
+.sequence-pad button:nth-child(4){grid-column:3;grid-row:2}
+
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"><div class="snowfall snow-a"></div><div class="snowfall snow-b"></div><div class="snowfall snow-c"></div><div class="aurora"></div><div class="aurora two"></div><div class="mountain back"></div><div class="mountain"></div><div class="snowline"></div><div class="forest"></div></div>
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="logo gate-logo"><span>P</span></div>
+    <div class="eyebrow">Members only</div>
+    <h2>The Pedro Clan</h2>
+    <p id="gateText">Enter the clan password to unlock the hideout.</p>
+    <form id="loginForm">
+      <input id="password" type="password" placeholder="Enter password" autocomplete="current-password" aria-label="Password" required>
+      <button class="btn" type="submit" id="enterBtn">UNLOCK THE GATES ↗</button>
+    </form>
+    <div class="error" id="loginError" aria-live="polite"></div>
+  </div>
+</div>
+
+<main id="site" class="hidden">
+<header>
+  <div class="brand"><div class="logo"><span>P</span></div><div class="brand-name">The Pedro Clan</div></div>
+  <select id="language" aria-label="Choose language">
+    <option value="en">English</option><option value="zh">中文 · Chinese</option><option value="pt">Português</option><option value="fr">Français (Canada)</option><option value="el">Ελληνικά</option><option value="lt">Lietuvių</option>
+  </select>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="heroTitle">Welcome to the Clan.</h1>
+  
+  <div class="actions"><a class="btn" href="#members" data-i18n="meetBtn">MEET THE MEMBERS ↓</a><a class="btn secondary" href="#games" data-i18n="gamesBtn">PLAY MINI GAMES </a></div>
+</section>
+
+<section class="panel" id="members">
+  <h2 class="section-title" data-i18n="membersTitle">THE CREW</h2>
+  <p class="sub" data-i18n="membersSub">Click a member and enter their name to unlock their stickman and choose a head accessory.</p>
+  <div class="members" id="memberButtons"></div>
+  <div class="profile" id="profile" aria-live="polite">
+    <div class="avatar" id="avatar"></div>
+    <div><h3 id="profileName">PEDRO</h3><div class="role" id="profileRole">Leader</div><div class="private" id="profileLore">The leader of the Pedro Clan.</div></div>
+  </div>
+  <div class="accessory-controls" id="accessoryControls" hidden>
+    <label for="accessorySelect">Head accessory</label>
+    <select id="accessorySelect">
+      <option value="">None</option>
+      <option value="👑">Crown</option>
+      <option value="🧢">Cap</option>
+      <option value="🎩">Top hat</option>
+      <option value="🕶️">Sunglasses</option>
+      <option value="🎧">Headphones</option>
+      <option value="🦊">Fox ears</option>
+      <option value="❄️">Snowflake</option>
+      <option value="🌸">Flower</option>
+      <option value="🐸">Frog hat</option>
+      <option value="😈">Devil horns</option>
+    </select>
+    <span id="accessoryStatus">Unlocked for this visit</span>
+  </div>
+</section>
+
+<section class="panel" id="games">
+  <h2 class="section-title" data-i18n="gamesTitle">MINI GAMES</h2>
+  <p class="sub" data-i18n="gamesSub">Five quick challenges. Can you beat your own score?</p>
+  <div class="games">
+    <article class="game">
+      <h3 data-i18n="g1Title">01 / CLICK RUSH</h3><p data-i18n="g1Desc">Tap the button as many times as you can in 10 seconds.</p>
+      <div class="game-controls"><button class="btn" id="clickStart" data-i18n="startBtn">START 10 SEC</button><button class="btn secondary" id="clickTap" disabled data-i18n="tapBtn">TAP!</button></div><div class="game-output" id="clickOut" aria-live="polite">Score: 0</div><div class="game-output best-score" id="clickBest">Best: 0</div>
+    </article>
+    <article class="game">
+      <h3 data-i18n="g2Title">02 / MEMORY MATCH</h3><p data-i18n="g2Desc">Find all matching pairs. Fewer moves = better brainpower.</p>
+      <div class="game-controls"><button class="btn" id="memoryNew" data-i18n="newGameBtn">NEW GAME</button><span id="memoryMoves">Moves: 0</span></div><div class="game-controls" id="memoryBoard" style="margin-top:10px"></div><div class="game-output" id="memoryOut"></div>
+    </article>
+    <article class="game">
+      <h3 data-i18n="g3Title">03 / REACTION TEST</h3><p data-i18n="g3Desc">Wait for the panel to turn green, then click fast!</p>
+      <div class="game-controls"><button class="btn" id="reactionBtn" data-i18n="reactionStart">START TEST</button></div><div class="game-output" id="reactionOut" aria-live="polite">Ready?</div>
+    </article>
+    <article class="game">
+      <h3 data-i18n="g4Title">04 / NUMBER GUESS</h3><p data-i18n="g4Desc">Guess the secret number from 1 to 50.</p>
+      <div class="game-controls"><input type="number" id="guessInput" min="1" max="50" placeholder="1–50" aria-label="Your guess"><button class="btn" id="guessBtn" data-i18n="guessBtn">GUESS</button><button class="btn secondary" id="guessReset" data-i18n="resetBtn">RESET</button></div><div class="game-output" id="guessOut" aria-live="polite">I'm thinking of a number…</div>
+    </article>
+    <article class="game">
+      <h3 data-i18n="g5Title">05 / ROCK PAPER SCISSORS</h3><p data-i18n="g5Desc">Pick your move and challenge the clan bot.</p>
+      <div class="game-controls"><button class="btn secondary rps" data-move="rock">✊</button><button class="btn secondary rps" data-move="paper">✋</button><button class="btn secondary rps" data-move="scissors">✌</button></div><div class="game-output" id="rpsOut" aria-live="polite">Choose your move!</div>
+    </article>
+    <article class="game">
+      <h3>06 / SEQUENCE SPRINT</h3>
+      <p>Memorize the arrows, then repeat the sequence. Each round adds one more.</p>
+      <div class="game-output" id="sequencePrompt" aria-live="polite">Press Start when you're ready.</div>
+      <div class="game-controls"><button class="btn" id="sequenceStart">START RUN</button><span class="game-output" id="sequenceScore">Round: 0</span></div>
+      <div class="sequence-pad">
+        <button class="btn secondary" data-dir="up" aria-label="Up">↑</button>
+        <button class="btn secondary" data-dir="left" aria-label="Left">←</button>
+        <button class="btn secondary" data-dir="down" aria-label="Down">↓</button>
+        <button class="btn secondary" data-dir="right" aria-label="Right">→</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="panel">
+  <h2 class="section-title" data-i18n="linksTitle"> CLAN LINKS</h2>
+  <p class="sub" data-i18n="linksSub">Take a break from the blizzard.</p>
+  <div class="links"><a class="btn" href="https://neal.fun/" target="_blank" rel="noopener noreferrer">NEAL.FUN ↗</a><a class="btn secondary" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">♫ SPOTIFY ↗</a></div>
+</section>
+
+<section class="knight-scene" aria-label="Hollow Knight sitting on a bench">
+  <img class="knight-art" src="https://media1.tenor.com/m/YZcJnbYrKWYAAAAd/hollow-knight.gif" alt="Hollow Knight pixel art of the Knight sitting on a bench" loading="lazy">
+</section>
+
+<footer>© The Pedro Clan. All rights reserved.</footer>
+</main>
+
+<script>
+const translations = {
+en:{gateText:"Enter the clan password to unlock the hideout.",enterBtn:"UNLOCK THE GATES ↗",heroTag:"",heroTitle:"Welcome to the Clan.",heroDesc:"",meetBtn:"MEET THE MEMBERS ↓",gamesBtn:"PLAY MINI GAMES ",membersTitle:"THE CREW",membersSub:"Click a member and enter their name to unlock their stickman and choose a head accessory.",gamesTitle:"MINI GAMES",gamesSub:"Five quick challenges. Can you beat your own score?",g1Title:"01 / CLICK RUSH",g1Desc:"Tap the button as many times as you can in 10 seconds.",startBtn:"START 10 SEC",tapBtn:"TAP!",g2Title:"02 / MEMORY MATCH",g2Desc:"Find all matching pairs. Fewer moves = better brainpower.",newGameBtn:"NEW GAME",g3Title:"03 / REACTION TEST",g3Desc:"Wait for the panel to turn green, then click fast!",reactionStart:"START TEST",g4Title:"04 / NUMBER GUESS",g4Desc:"Guess the secret number from 1 to 50.",guessBtn:"GUESS",resetBtn:"RESET",g5Title:"05 / ROCK PAPER SCISSORS",g5Desc:"Pick your move and challenge the clan bot.",linksTitle:" CLAN LINKS",linksSub:"Take a break from the blizzard.",leader:"Leader",cofounder:"Co-founder",major:"Major",privateLore:"Lore: private 🔒",leaderLore:"The leader of the Pedro Clan.",cofounderLore:"Co-founder of the Pedro Clan.",majorLore:"Major of the Pedro Clan.",score:"Score",moves:"Moves",ready:"Ready?",wait:"Wait for green…",tooSoon:"Too soon! Try again.",clickGreen:"CLICK NOW!",reactionMs:"Your reaction: {n} ms",thinking:"I'm thinking of a number…",higher:"Too low — go higher!",lower:"Too high — go lower!",correct:"You got it in {n} guesses! 🎉",invalid:"Enter a number from 1 to 50.",chooseMove:"Choose your move!",win:"You win! 🎉",lose:"The bot wins this round.",draw:"It's a draw!",matched:"You matched them all in {n} moves! ",memoryHint:"Find the pairs!" ,accessory:"Accessory"},
+zh:{gateText:"输入部落密码，解锁秘密基地。",enterBtn:"解锁大门 ↗",heroTag:"秘密基地已开放",heroTitle:"欢迎来到部落。",heroDesc:"极光之下的秘密基地。认识成员、挑战自己，留下你的印记。",meetBtn:"认识成员 ↓",gamesBtn:"开始小游戏 ",membersTitle:" 部落成员",membersSub:"选择名字，查看他们的简笔人和身份。",gamesTitle:" 小游戏街机",gamesSub:"五个快速挑战，试试打破自己的纪录！",g1Title:"01 / 疯狂点击",g1Desc:"在十秒内尽可能多地点击按钮。",startBtn:"开始 10 秒",tapBtn:"点击！",g2Title:"02 / 记忆配对",g2Desc:"找出所有配对，步数越少越好。",newGameBtn:"新游戏",g3Title:"03 / 反应测试",g3Desc:"等面板变绿，然后快速点击！",reactionStart:"开始测试",g4Title:"04 / 猜数字",g4Desc:"猜出 1 到 50 之间的秘密数字。",guessBtn:"猜！",resetBtn:"重置",g5Title:"05 / 石头剪刀布",g5Desc:"选择动作，挑战部落机器人。",linksTitle:" 部落链接",linksSub:"从暴风雪中休息一下。",leader:"首领",cofounder:"联合创始人",major:"少校",privateLore:"背景故事：保密 🔒",leaderLore:"佩德罗部落的首领。",cofounderLore:"佩德罗部落的联合创始人。",majorLore:"佩德罗部落的少校。",score:"分数",moves:"步数",ready:"准备好了吗？",wait:"等待绿色……",tooSoon:"太早了！再试一次。",clickGreen:"现在点击！",reactionMs:"你的反应时间：{n} 毫秒",thinking:"我正在想一个数字……",higher:"太小了，再大一点！",lower:"太大了，再小一点！",correct:"你猜对了！共猜了 {n} 次 🎉",invalid:"请输入 1 到 50 之间的数字。",chooseMove:"选择你的动作！",win:"你赢了！🎉",lose:"机器人赢了这一轮。",draw:"平局！",matched:"你用 {n} 步完成配对！",memoryHint:"找出配对！",accessory:"配饰"},
+pt:{gateText:"Digite a senha do clã para entrar no esconderijo.",enterBtn:"ABRIR OS PORTÕES ↗",heroTag:"O ESCONDERIJO ESTÁ ABERTO",heroTitle:"Bem-vindo ao Clã.",heroDesc:"Uma base secreta sob a aurora boreal. Conheça os membros, teste suas habilidades e deixe sua marca.",meetBtn:"CONHECER MEMBROS ↓",gamesBtn:"JOGAR MINIGAMES ",membersTitle:" OS MEMBROS",membersSub:"Escolha um nome para ver seu boneco e status no clã.",gamesTitle:" ARCADE DE MINIJOGOS",gamesSub:"Cinco desafios rápidos. Supere sua própria pontuação!",g1Title:"01 / CLIQUE RÁPIDO",g1Desc:"Clique o máximo que puder em 10 segundos.",startBtn:"COMEÇAR 10 S",tapBtn:"CLIQUE!",g2Title:"02 / JOGO DA MEMÓRIA",g2Desc:"Encontre todos os pares com o menor número de jogadas.",newGameBtn:"NOVO JOGO",g3Title:"03 / TESTE DE REFLEXO",g3Desc:"Espere o painel ficar verde e clique rápido!",reactionStart:"INICIAR TESTE",g4Title:"04 / ADIVINHE O NÚMERO",g4Desc:"Adivinhe o número secreto de 1 a 50.",guessBtn:"TENTAR",resetBtn:"REINICIAR",g5Title:"05 / PEDRA, PAPEL E TESOURA",g5Desc:"Escolha sua jogada e desafie o robô do clã.",linksTitle:" LINKS DO CLÃ",linksSub:"Faça uma pausa na nevasca.",leader:"Líder",cofounder:"Cofundador",major:"Major",privateLore:"História: privada 🔒",leaderLore:"O líder do Clã Pedro.",cofounderLore:"Cofundador do Clã Pedro.",majorLore:"Major do Clã Pedro.",score:"Pontuação",moves:"Jogadas",ready:"Pronto?",wait:"Espere o verde…",tooSoon:"Cedo demais! Tente de novo.",clickGreen:"CLIQUE AGORA!",reactionMs:"Seu reflexo: {n} ms",thinking:"Estou pensando em um número…",higher:"Muito baixo — tente maior!",lower:"Muito alto — tente menor!",correct:"Acertou em {n} tentativas! 🎉",invalid:"Digite um número de 1 a 50.",chooseMove:"Escolha sua jogada!",win:"Você venceu! 🎉",lose:"O robô venceu esta rodada.",draw:"Empate!",matched:"Você encontrou todos os pares em {n} jogadas! ",memoryHint:"Encontre os pares!",accessory:"Acessório"},
+fr:{gateText:"Entre le mot de passe du clan pour ouvrir le repaire.",enterBtn:"OUVRIR LES PORTES ↗",heroTag:"LE REPAIRE EST OUVERT",heroTitle:"Bienvenue dans le clan.",heroDesc:"Une base secrète sous les aurores boréales. Rencontrez les membres, testez vos talents et marquez l'histoire.",meetBtn:"RENCONTRER LES MEMBRES ↓",gamesBtn:"JOUER AUX MINI-JEUX ",membersTitle:" LES MEMBRES",membersSub:"Choisissez un nom pour voir son bonhomme et son rôle.",gamesTitle:" SALLE DE MINI-JEUX",gamesSub:"Cinq défis rapides. Battez votre propre record !",g1Title:"01 / CLIC EXPRESS",g1Desc:"Cliquez autant que possible en 10 secondes.",startBtn:"DÉMARRER 10 S",tapBtn:"CLIQUEZ !",g2Title:"02 / JEU DE MÉMOIRE",g2Desc:"Trouvez toutes les paires avec le moins de coups.",newGameBtn:"NOUVELLE PARTIE",g3Title:"03 / TEST DE RÉFLEXES",g3Desc:"Attendez que le panneau devienne vert, puis cliquez vite !",reactionStart:"LANCER LE TEST",g4Title:"04 / DEVINE LE NOMBRE",g4Desc:"Devinez le nombre secret entre 1 et 50.",guessBtn:"DEVINER",resetBtn:"RÉINITIALISER",g5Title:"05 / PIERRE-PAPIER-CISEAUX",g5Desc:"Choisissez un coup et défiez le robot du clan.",linksTitle:" LIENS DU CLAN",linksSub:"Faites une pause dans la tempête de neige.",leader:"Chef",cofounder:"Cofondateur",major:"Major",privateLore:"Histoire : privée 🔒",leaderLore:"Le chef du clan Pedro.",cofounderLore:"Cofondateur du clan Pedro.",majorLore:"Major du clan Pedro.",score:"Score",moves:"Coups",ready:"Prêt ?",wait:"Attendez le vert…",tooSoon:"Trop tôt ! Réessayez.",clickGreen:"CLIQUEZ MAINTENANT !",reactionMs:"Votre temps de réaction : {n} ms",thinking:"Je pense à un nombre…",higher:"Trop petit — plus haut !",lower:"Trop grand — plus bas !",correct:"Trouvé en {n} essais ! 🎉",invalid:"Entrez un nombre de 1 à 50.",chooseMove:"Choisissez votre coup !",win:"Vous gagnez ! 🎉",lose:"Le robot gagne cette manche.",draw:"Égalité !",matched:"Toutes les paires en {n} coups ! ",memoryHint:"Trouvez les paires !",accessory:"Accessoire"},
+el:{gateText:"Βάλε τον κωδικό της ομάδας για να μπεις στο κρησφύγετο.",enterBtn:"ΞΕΚΛΕΙΔΩΣΕ ↗",heroTag:"ΤΟ ΚΡΗΣΦΥΓΕΤΟ ΕΙΝΑΙ ΑΝΟΙΧΤΟ",heroTitle:"Καλώς ήρθες στη Clan.",heroDesc:"Μια μυστική βάση κάτω από το βόρειο σέλας. Γνώρισε τα μέλη και δοκίμασε τις ικανότητές σου.",meetBtn:"ΓΝΩΡΙΣΕ ΤΑ ΜΕΛΗ ↓",gamesBtn:"ΠΑΙΞΕ ΜΙΝΙ ΠΑΙΧΝΙΔΙΑ ",membersTitle:" ΤΑ ΜΕΛΗ",membersSub:"Διάλεξε όνομα για να δεις το ανθρωπάκι και τον ρόλο του.",gamesTitle:" ΜΙΝΙ ΠΑΙΧΝΙΔΙΑ",gamesSub:"Πέντε γρήγορες προκλήσεις. Σπάσε το ρεκόρ σου!",g1Title:"01 / ΓΡΗΓΟΡΑ ΚΛΙΚ",g1Desc:"Πάτησε το κουμπί όσο πιο πολλές φορές σε 10 δευτερόλεπτα.",startBtn:"ΕΝΑΡΞΗ 10 ΔΕΥΤ.",tapBtn:"ΠΑΤΑ!",g2Title:"02 / ΤΑΙΡΙΑΣΜΑ ΜΝΗΜΗΣ",g2Desc:"Βρες όλα τα ζευγάρια με τις λιγότερες κινήσεις.",newGameBtn:"ΝΕΟ ΠΑΙΧΝΙΔΙ",g3Title:"03 / ΤΕΣΤ ΑΝΤΙΔΡΑΣΗΣ",g3Desc:"Περίμενε να γίνει πράσινο και πάτα γρήγορα!",reactionStart:"ΕΝΑΡΞΗ ΤΕΣΤ",g4Title:"04 / ΜΑΝΤΕΨΕ ΤΟΝ ΑΡΙΘΜΟ",g4Desc:"Μάντεψε τον αριθμό από το 1 έως το 50.",guessBtn:"ΜΑΝΤΕΨΕ",resetBtn:"ΕΠΑΝΑΦΟΡΑ",g5Title:"05 / ΠΕΤΡΑ-ΨΑΛΙΔΙ-ΧΑΡΤΙ",g5Desc:"Διάλεξε κίνηση και παίξε με το bot της ομάδας.",linksTitle:" ΣΥΝΔΕΣΜΟΙ CLAN",linksSub:"Κάνε ένα διάλειμμα από τη χιονοθύελλα.",leader:"Αρχηγός",cofounder:"Συνιδρυτής",major:"Ταγματάρχης",privateLore:"Ιστορία: ιδιωτική 🔒",leaderLore:"Ο αρχηγός της Pedro Clan.",cofounderLore:"Συνιδρυτής της Pedro Clan.",majorLore:"Ταγματάρχης της Pedro Clan.",score:"Σκορ",moves:"Κινήσεις",ready:"Έτοιμος;",wait:"Περίμενε το πράσινο…",tooSoon:"Πολύ νωρίς! Ξανά.",clickGreen:"ΠΑΤΑ ΤΩΡΑ!",reactionMs:"Χρόνος αντίδρασης: {n} ms",thinking:"Σκέφτομαι έναν αριθμό…",higher:"Πολύ μικρός — πιο πάνω!",lower:"Πολύ μεγάλος — πιο κάτω!",correct:"Το βρήκες σε {n} προσπάθειες! 🎉",invalid:"Βάλε αριθμό από 1 έως 50.",chooseMove:"Διάλεξε κίνηση!",win:"Κέρδισες! 🎉",lose:"Το bot κέρδισε αυτόν τον γύρο.",draw:"Ισοπαλία!",matched:"Βρήκες όλα τα ζευγάρια σε {n} κινήσεις! ",memoryHint:"Βρες τα ζευγάρια!",accessory:"Αξεσουάρ"},
+lt:{gateText:"Įvesk klano slaptažodį, kad patektum į slėptuvę.",enterBtn:"ATRAKINTI VARTUS ↗",heroTag:"SLĖPTUVĖ ATVIRA",heroTitle:"Sveikas atvykęs į klaną.",heroDesc:"Slapta bazė po šiaurės pašvaiste. Susipažink su nariais, išbandyk įgūdžius ir palik savo pėdsaką.",meetBtn:"SUSIPAŽINK SU NARIAIS ↓",gamesBtn:"ŽAISTI MINI ŽAIDIMUS ",membersTitle:" KLANO NARIAI",membersSub:"Pasirink vardą ir pamatyk jo žmogeliuką bei statusą.",gamesTitle:" MINI ŽAIDIMŲ ARKADA",gamesSub:"Penki greiti iššūkiai. Pagerink savo rezultatą!",g1Title:"01 / KLIKŲ AUDRA",g1Desc:"Per 10 sekundžių spausk mygtuką kuo daugiau kartų.",startBtn:"PRADĖTI 10 S",tapBtn:"SPAUSK!",g2Title:"02 / ATMINTIES ŽAIDIMAS",g2Desc:"Rask visas poras atlikdamas kuo mažiau ėjimų.",newGameBtn:"NAUJAS ŽAIDIMAS",g3Title:"03 / REAKCIJOS TESTAS",g3Desc:"Palauk, kol skydelis taps žalias, ir greitai spustelėk!",reactionStart:"PRADĖTI TESTĄ",g4Title:"04 / ATSPĖK SKAIČIŲ",g4Desc:"Atspėk slaptą skaičių nuo 1 iki 50.",guessBtn:"SPĖTI",resetBtn:"IŠ NAUJO",g5Title:"05 / AKMUO, POPIERIUS, ŽIRKLĖS",g5Desc:"Pasirink ėjimą ir mesk iššūkį klano robotui.",linksTitle:" KLANO NUORODOS",linksSub:"Pailsėk nuo pūgos.",leader:"Vadovas",cofounder:"Bendraįkūrėjas",major:"Majoras",privateLore:"Istorija: privati 🔒",leaderLore:"Pedro klano vadovas.",cofounderLore:"Pedro klano bendraįkūrėjas.",majorLore:"Pedro klano majoras.",score:"Rezultatas",moves:"Ėjimai",ready:"Pasiruošęs?",wait:"Lauk žalios spalvos…",tooSoon:"Per anksti! Bandyk dar kartą.",clickGreen:"SPUSTELĖK DABAR!",reactionMs:"Tavo reakcija: {n} ms",thinking:"Galvoju skaičių…",higher:"Per mažas — didink!",lower:"Per didelis — mažink!",correct:"Atspėjai per {n} bandymus! 🎉",invalid:"Įvesk skaičių nuo 1 iki 50.",chooseMove:"Pasirink ėjimą!",win:"Laimėjai! 🎉",lose:"Šį raundą laimėjo robotas.",draw:"Lygiosios!",matched:"Visas poras radai per {n} ėjimų! ",memoryHint:"Rask poras!",accessory:"Priedas"}
+};
+const members=[
+{name:"Adam",role:"",lore:""}, {name:"Valdas",role:"",lore:""}, {name:"Miguel",role:"",lore:""},
+{name:"Francesco",role:"cofounder",lore:"cofounderLore"}, {name:"Geronimo",role:"",lore:""},
+{name:"Jason",role:"major",lore:"majorLore"}, {name:"Pedro",role:"leader",lore:"leaderLore"}
+];
+let lang="en";
+function t(key){return (translations[lang]&&translations[lang][key])||translations.en[key]||key}
+document.getElementById('loginForm').addEventListener('submit',e=>{
+ e.preventDefault();const val=document.getElementById('password').value;
+ if(val.trim().toLowerCase()==='pedro'){document.getElementById('gate').classList.add('hidden');document.getElementById('site').classList.remove('hidden');showMember('Pedro');newMemory();}else{document.getElementById('loginError').textContent=lang==='zh'?'密码不正确。':lang==='pt'?'Senha incorreta.':lang==='fr'?'Mot de passe incorrect.':lang==='el'?'Λάθος κωδικός.':lang==='lt'?'Neteisingas slaptažodis.':'Incorrect password.';document.getElementById('password').select()}
+});
+function applyLanguage(){document.documentElement.lang=lang==='zh'?'zh':lang==='fr'?'fr-CA':lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t(k))el.textContent=t(k)});document.getElementById('gateText').textContent=t('gateText');document.getElementById('enterBtn').textContent=t('enterBtn');renderMembers();const current=document.getElementById('profileName').textContent;if(current)showMember(current);document.getElementById('clickOut').textContent=t('score')+': '+clickScore;document.getElementById('memoryMoves').textContent=t('moves')+': '+memoryMoves;}
+document.getElementById('language').addEventListener('change',e=>{lang=e.target.value;applyLanguage();});
+function renderMembers(){const wrap=document.getElementById('memberButtons');wrap.innerHTML='';members.forEach(m=>{const b=document.createElement('button');b.className='member';b.innerHTML='<strong>'+m.name.toUpperCase()+'</strong><span>'+(m.role?t(m.role):'??? · '+t('privateLore'))+'</span>';b.addEventListener('click',()=>showMember(m.name));wrap.appendChild(b)})}
+const accessories=['','👑','🎧','🧢','🧣','🎩','🪽','❄️','🕶️','🦊','🌸','🐸','😈'];
+const memberUnlocks=new Set();
+const memberAccessories={};
+let activeMember='Pedro';
+function stickman(accessory){return `<svg viewBox="0 0 120 150" role="img" aria-label="Stickman with head accessory"><circle cx="60" cy="32" r="17" fill="none" stroke="#c9f7ff" stroke-width="4"/><path d="M60 50 L60 94 M60 62 L32 82 M60 62 L88 82 M60 94 L39 127 M60 94 L81 127" fill="none" stroke="#c9f7ff" stroke-width="5" stroke-linecap="round"/><circle cx="54" cy="31" r="1.8" fill="#64f4ff"/><circle cx="66" cy="31" r="1.8" fill="#64f4ff"/><path d="M54 39 Q60 43 66 39" fill="none" stroke="#64f4ff" stroke-width="2" stroke-linecap="round"/><text x="60" y="17" text-anchor="middle" font-size="19">${accessory||''}</text><text x="60" y="145" text-anchor="middle" font-size="7" fill="#64f4ff" letter-spacing="2">CLAN MEMBER</text></svg>`}
+function showMember(name){const m=members.find(x=>x.name.toLowerCase()===name.toLowerCase())||members[6];activeMember=m.name;document.getElementById('profileName').textContent=m.name.toUpperCase();document.getElementById('profileRole').textContent=m.role?t(m.role):t('privateLore');document.getElementById('profileLore').textContent=m.lore?t(m.lore):t('privateLore');document.getElementById('avatar').innerHTML=stickman(memberAccessories[m.name]||'');const controls=document.getElementById('accessoryControls');controls.hidden=!memberUnlocks.has(m.name);document.getElementById('accessorySelect').value=memberAccessories[m.name]||'';}
+document.getElementById('avatar').style.cursor='pointer';document.getElementById('avatar').title='Click the stickman to unlock accessories';document.getElementById('avatar').addEventListener('click',()=>unlockMember(activeMember));
+function unlockMember(name){const pass=window.prompt('Enter '+name+'’s password:');if(pass===null)return;if(pass.trim().toLowerCase()!==name.toLowerCase()){window.alert('Wrong password. Try the member’s name.');return;}memberUnlocks.add(name);showMember(name);document.getElementById('accessoryStatus').textContent=name+' unlocked for this visit';}
+document.getElementById('accessorySelect').addEventListener('change',e=>{if(!memberUnlocks.has(activeMember))return;memberAccessories[activeMember]=e.target.value;document.getElementById('avatar').innerHTML=stickman(e.target.value);});
+renderMembers();showMember('Pedro');
+
+// Click rush
+let clickScore=0,clickActive=false,clickTimer=null;const clickTap=document.getElementById('clickTap');
+document.getElementById('clickStart').onclick=()=>{clearTimeout(clickTimer);clickScore=0;clickActive=true;clickTap.disabled=false;document.getElementById('clickOut').textContent=t('score')+': 0 · 10s';let left=10;const start=Date.now();const tick=()=>{left=10-Math.floor((Date.now()-start)/1000);if(left<=0){clickActive=false;clickTap.disabled=true;document.getElementById('clickOut').textContent=t('score')+': '+clickScore+' — time!';return}document.getElementById('clickOut').textContent=t('score')+': '+clickScore+' · '+left+'s';clickTimer=setTimeout(tick,150)};tick()};
+clickTap.onclick=()=>{if(clickActive){clickScore++;document.getElementById('clickOut').textContent=t('score')+': '+clickScore}};
+
+// Memory match
+let memoryCards=[],memoryOpen=[],memoryLocked=false,memoryMoves=0,memoryPairs=0;
+function newMemory(){const icons=['❄️','🌲','🌌','🏔️','','🦊'];memoryCards=[...icons,...icons].sort(()=>Math.random()-.5);memoryOpen=[];memoryLocked=false;memoryMoves=0;memoryPairs=0;document.getElementById('memoryOut').textContent=t('memoryHint');document.getElementById('memoryMoves').textContent=t('moves')+': 0';const board=document.getElementById('memoryBoard');board.innerHTML='';memoryCards.forEach((icon,i)=>{const b=document.createElement('button');b.className='btn secondary';b.textContent='?';b.style.cssText='min-width:39px;padding:8px 10px;font-size:18px';b.setAttribute('aria-label','Memory card');b.onclick=()=>flipCard(i,b);board.appendChild(b)})}
+function flipCard(i,b){if(memoryLocked||memoryOpen.some(x=>x.i===i)||b.dataset.matched)return;b.textContent=memoryCards[i];memoryOpen.push({i,b});if(memoryOpen.length===2){memoryMoves++;document.getElementById('memoryMoves').textContent=t('moves')+': '+memoryMoves;if(memoryCards[memoryOpen[0].i]===memoryCards[memoryOpen[1].i]){memoryOpen.forEach(x=>{x.b.dataset.matched='1';x.b.style.borderColor='#63ffd2'});memoryOpen=[];memoryPairs++;if(memoryPairs===6)document.getElementById('memoryOut').textContent=t('matched').replace('{n}',memoryMoves)}else{memoryLocked=true;setTimeout(()=>{memoryOpen.forEach(x=>x.b.textContent='?');memoryOpen=[];memoryLocked=false},700)}}}
+document.getElementById('memoryNew').onclick=newMemory;
+
+// Reaction test
+let reactionState='idle',reactionStart=0,reactionTimeout=null;const reactionBtn=document.getElementById('reactionBtn');
+reactionBtn.onclick=()=>{if(reactionState==='wait'){clearTimeout(reactionTimeout);reactionState='idle';document.getElementById('reactionOut').textContent=t('tooSoon');reactionBtn.textContent=t('reactionStart');reactionBtn.style.background='';return}if(reactionState==='go'){const ms=Date.now()-reactionStart;reactionState='idle';reactionBtn.style.background='';reactionBtn.textContent=t('reactionStart');document.getElementById('reactionOut').textContent=t('reactionMs').replace('{n}',ms);return}reactionState='wait';reactionBtn.textContent=t('wait');document.getElementById('reactionOut').textContent=t('wait');reactionTimeout=setTimeout(()=>{if(reactionState==='wait'){reactionState='go';reactionStart=Date.now();reactionBtn.textContent=t('clickGreen');reactionBtn.style.background='linear-gradient(135deg,#08764f,#21b878)';document.getElementById('reactionOut').textContent=t('clickGreen')}},1000+Math.random()*3000)};
+
+// Guess the number
+let secret=Math.floor(Math.random()*50)+1,guesses=0;function resetGuess(){secret=Math.floor(Math.random()*50)+1;guesses=0;document.getElementById('guessInput').value='';document.getElementById('guessOut').textContent=t('thinking')}
+document.getElementById('guessBtn').onclick=()=>{const n=Number(document.getElementById('guessInput').value);if(!Number.isInteger(n)||n<1||n>50){document.getElementById('guessOut').textContent=t('invalid');return}guesses++;document.getElementById('guessOut').textContent=n===secret?t('correct').replace('{n}',guesses):n<secret?t('higher'):t('lower');if(n===secret)setTimeout(resetGuess,3000)};
+document.getElementById('guessReset').onclick=resetGuess;document.getElementById('guessInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('guessBtn').click()});
+
+// Rock paper scissors
+document.querySelectorAll('.rps').forEach(b=>b.onclick=()=>{const moves=['rock','paper','scissors'],emoji={rock:'✊',paper:'✋',scissors:'✌'},you=b.dataset.move,bot=moves[Math.floor(Math.random()*3)];let result=you===bot?t('draw'):(you==='rock'&&bot==='scissors'||you==='paper'&&bot==='rock'||you==='scissors'&&bot==='paper')?t('win'):t('lose');document.getElementById('rpsOut').textContent=`${emoji[you]}  vs  ${emoji[bot]} — ${result}`});
+function refreshGameText(){document.getElementById('clickOut').textContent=t('score')+': '+clickScore;document.getElementById('memoryMoves').textContent=t('moves')+': '+memoryMoves}
+
+// Best scores are saved in this browser on this device.
+function getBest(key){try{return Number(localStorage.getItem('pedroClan_'+key)||0)}catch(e){return 0}}
+function setBest(key,value){try{localStorage.setItem('pedroClan_'+key,String(value))}catch(e){}}
+let clickBest=getBest('clickBest');
+document.getElementById('clickBest').textContent='Best: '+clickBest;
+const originalClickFinishMarker=";\n\n// Memory match";
+if (clickBest >= 0) {
+  const _clickTapOriginal=clickTap.onclick;
+  clickTap.onclick=()=>{if(clickActive){clickScore++;document.getElementById('clickOut').textContent=t('score')+': '+clickScore;if(clickScore>clickBest){clickBest=clickScore;setBest('clickBest',clickBest);document.getElementById('clickBest').textContent='Best: '+clickBest;}}};
+}
+let sequence=[],sequenceInput=[],sequenceRound=0,sequenceActive=false;
+const sequenceDirs=['up','left','down','right'];
+const sequenceSymbols={up:'↑',left:'←',down:'↓',right:'→'};
+const sequencePrompt=document.getElementById('sequencePrompt');
+const sequenceScore=document.getElementById('sequenceScore');
+function startSequence(){sequence=[];sequenceRound=0;sequenceActive=true;nextSequenceRound();}
+function nextSequenceRound(){sequenceRound++;sequenceInput=[];sequence.push(sequenceDirs[Math.floor(Math.random()*sequenceDirs.length)]);sequencePrompt.textContent='Memorize: '+sequence.map(d=>sequenceSymbols[d]).join(' ');sequenceScore.textContent='Round: '+sequenceRound;setTimeout(()=>{if(sequenceActive)sequencePrompt.textContent='Repeat the arrows!'},Math.min(1800,650+sequence.length*100));}
+document.getElementById('sequenceStart').addEventListener('click',startSequence);
+document.querySelectorAll('.sequence-pad [data-dir]').forEach(b=>b.addEventListener('click',()=>{if(!sequenceActive)return;const dir=b.dataset.dir;sequenceInput.push(dir);const idx=sequenceInput.length-1;if(sequence[idx]!==dir){sequenceActive=false;sequencePrompt.textContent='Run over! You reached round '+sequenceRound+'. Try again!';const best=getBest('sequenceBest');if(sequenceRound-1>best)setBest('sequenceBest',sequenceRound-1);return;}if(sequenceInput.length===sequence.length){sequencePrompt.textContent='Nice! Next round…';setTimeout(()=>{if(sequenceActive)nextSequenceRound()},500);}}));
+
+</script>
+</body>
+</html>
